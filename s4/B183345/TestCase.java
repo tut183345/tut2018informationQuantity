@@ -60,6 +60,36 @@ public class TestCase {
 	}
     }
 
+    public static void testEstimator(byte[] Target, byte[] Space){
+	InformationEstimatorInterface myObject;
+	double value;
+	
+	myObject = new s4.B183345.InformationEstimator();
+	if(Target != null){
+	    myObject.setTarget(Target);
+	    System.out.print("Target:" + (new String(Target)));
+	}else{
+	    System.out.print("Target: null");
+	}
+	System.out.println("");
+
+	if(Space != null){
+	    myObject.setSpace(Space);
+	    System.out.print("Space:" + (new String(Space)));
+	}else{
+	    System.out.print("Space: null");
+	}
+	System.out.println("");
+
+	try{
+	    value = myObject.estimation();
+	    System.out.println("value:" + value);
+	}catch(Exception e){
+	    System.out.println("Exception occurred: STOP");
+	}
+    }
+
+
     public static void main(String[] args) {
 	if(3.0/0 < 20) System.out.println("aho");
         try {
@@ -106,6 +136,12 @@ public class TestCase {
             value = myObject.estimation();
             System.out.println(">00 " + value);
 	    
+	    //Black Box Test//
+	    TestCase.testEstimator(null, "3210321001230123".getBytes());// target is not set. So output is 0.0.
+	    TestCase.testEstimator("".getBytes(), "3210321001230123".getBytes());// target's length is zero. So output is 0.0.
+	    TestCase.testEstimator("1111111111".getBytes(), "2".getBytes());//true value is infinite. So output is Double.MAX_VALUE.
+	    TestCase.testEstimator("0".getBytes(), null);// space is not set. So output is Double.MAX_VALUE.
+
 
         } catch (Exception e) {
             System.out.println("Exception occurred: STOP");
