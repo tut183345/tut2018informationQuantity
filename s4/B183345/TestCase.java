@@ -91,7 +91,6 @@ public class TestCase {
 
 
     public static void main(String[] args) {
-	if(3.0/0 < 20) System.out.println("aho");
         try {
             FrequencerInterface myObject;
             int freq;
@@ -112,6 +111,7 @@ public class TestCase {
 	    TestCase.testFrequency("".getBytes(), "H".getBytes());// target's length is zero. So output is -1.0.
 	    TestCase.testFrequency("Hi Ho Hi Ho".getBytes(), null);// space is not set. So output is 0.0.
 	    TestCase.testFrequency("Hi Ho Hi Ho".getBytes(), "".getBytes());// space's length is zero. So output is 0.0.
+	    TestCase.testFrequency("Hi Ho Hi Ho".getBytes(), "Hi".getBytes());
 
         } catch (Exception e) {
             System.out.println("Exception occurred: STOP");
@@ -135,7 +135,7 @@ public class TestCase {
             myObject.setTarget("00".getBytes());
             value = myObject.estimation();
             System.out.println(">00 " + value);
-	    
+
 	    //Black Box Test//
 	    TestCase.testEstimator(null, "3210321001230123".getBytes());// target is not set. So output is 0.0.
 	    TestCase.testEstimator("".getBytes(), "3210321001230123".getBytes());// target's length is zero. So output is 0.0.
