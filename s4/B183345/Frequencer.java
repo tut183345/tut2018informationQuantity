@@ -110,11 +110,10 @@ public class Frequencer implements FrequencerInterface{
 	//
 	// ****  Please write code here... ***
 	//
+	String tmp = new String(mySpace);
 	String[] temparray = new String[mySpace.length];
 	for(int i = 0; i < mySpace.length; i++){
-	    for(int j = i; j < mySpace.length; j++){
-		temparray[i] += (char)mySpace[j];
-	    }
+	    temparray[i] = tmp.substring(i);
 	}
 
 	quicksort(suffixArray, temparray, 0, mySpace.length - 1);
@@ -140,7 +139,6 @@ public class Frequencer implements FrequencerInterface{
 	// "Ho"      =     "H"     : "H" is in the head of suffix "Ho"
 	//
 	// ****  Please write code here... ***
-	//
 	int s_i = suffixArray[i];
 	int n = mySpace.length - s_i;
 	
@@ -161,8 +159,8 @@ public class Frequencer implements FrequencerInterface{
 	}
 
 	return 0;
-    }
 
+    }
     private int subByteStartIndex(int start, int end) {
 	// It returns the index of the first suffix which is equal or greater than subBytes;
 	// not implemented yet;
