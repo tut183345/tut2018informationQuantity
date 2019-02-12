@@ -81,11 +81,23 @@ public class InformationEstimator implements InformationEstimatorInterface {
     }
 
     public double estimation() {
+	if(myTarget.length == 0 || myTarget == null){
+	    return 0.0;
+	}
+	if(mySpace == null){
+	    return Double.MAX_VALUE;
+	}
         values = new double[myTarget.length];
         for (int i = 0; i < myTarget.length; i++) {
             values[i] = -1.0;
         }
-        return (myiq(myTarget.length));
+
+	double tmp;
+	tmp = myiq(myTarget.length);
+	if(Double.isInfinite(tmp)){
+	    tmp = Double.MAX_VALUE;
+	}
+        return (tmp);
     }
 
     public static void main(String[] args) {
@@ -93,9 +105,9 @@ public class InformationEstimator implements InformationEstimatorInterface {
         double value;
         myObject = new InformationEstimator();
         myObject.setSpace("3210321001230123".getBytes());
-        myObject.setTarget("0".getBytes());
+        myObject.setTarget("".getBytes());
         value = myObject.estimation();
-        System.out.println(">0 " + value);
+        System.out.println(">target length is zero " + value);
         myObject.setTarget("01".getBytes());
         value = myObject.estimation();
         System.out.println(">01 " + value);
